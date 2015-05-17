@@ -82,6 +82,7 @@ class SolitaryPanel extends JPanel implements ActionListener{
         //scroll.setBounds(10,5,475,250);
         //this.add(scroll);
         
+        /*GROUP LAYOUT*/
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addComponent(scroll)
              .addGroup(layout.createSequentialGroup()
@@ -129,7 +130,7 @@ class SolitaryPanel extends JPanel implements ActionListener{
                 selectButton.setText("Add Image");
         }
         
-        else if(e.getSource() == deleteButton){
+        else if(e.getSource() == deleteButton){     //choose and delete any of the selected images 
             checkboxes = new ArrayList<Checkbox>();
             
             delFrame = new JFrame("Images");
@@ -161,32 +162,36 @@ class SolitaryPanel extends JPanel implements ActionListener{
         }
         
         else if(e.getSource() == stitchButton){
-            directory = new File("/home/cjhay/Desktop/Image Stitcher");
-           try{
-            directory.mkdir();
-           }
+            directory = new File("/home/cjhay/Desktop/Image Stitcher"); //folder for holding the stitched images
+           
+            try{
+                directory.mkdir();      //creating the needed directory
+            }
            catch(Exception ex){
                System.out.println(ex);
            }
            
-            for(i=0;i<(path.size()-1);i=i+2){
-                newPath = Stitcher.initializeImages(path.get(i), path.get(i+1),counter);
+            for(i=0;i<(path.size()-1);i=i+2){       //loop for stitching the images
+                newPath = Stitcher.initializeImages(path.get(i), path.get(i+1),counter);//sends the first 2 images
                 counter++;
                 System.out.println("New path:"+newPath);
-                if(newPath.equalsIgnoreCase("Failed")){
+                
+                if(newPath.equalsIgnoreCase("Failed")){     //when the input images are not stitched
                     System.out.println("Feature Match Is Too Low");
                 }
-                else if(path.size()<=2){
+                
+                else if(path.size()<=2){             //when the remaining images are already stitched   
                     System.out.println("Finished Stitching");
                     break;
                 }
+                
                 else{
                     System.out.println("Size:"+path.size());
                     System.out.println("I:"+i);
-                    path.remove(i);
+                    path.remove(i);                                     //removes the input images after successfully stitched
                     path.remove(i+1);
                     System.out.println("Size remove:"+path.size());
-                    path.add(newPath);
+                    path.add(newPath);          //adds the path of the created image to arraylist
                     i=0;
                     System.out.println("New I:"+i);
                 }    
@@ -194,7 +199,7 @@ class SolitaryPanel extends JPanel implements ActionListener{
             System.out.println("Exit Loop");
         }
         
-        else if(e.getSource() == confirmDelete){
+        else if(e.getSource() == confirmDelete){        //confirms deletion of selected images
             for(i=0;i<filename.size();i++){
                 if(checkboxes.get(i).getState()){
                     dtm.removeRow(i);

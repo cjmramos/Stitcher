@@ -112,6 +112,7 @@ public class CloudPanel extends JPanel implements ActionListener {
         
         category = new JLabel("                                       ");
         
+        /*Layout for the user interface*/
         layout.setHorizontalGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                  .addComponent(cloudLabel)
@@ -171,7 +172,7 @@ public class CloudPanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
-        if(e.getSource() == selectButton2){
+        if(e.getSource() == selectButton2){ //selects the images to be used as input
                 //path = new ArrayList<>();
                 //filename = new ArrayList<>();
                 
@@ -220,7 +221,7 @@ public class CloudPanel extends JPanel implements ActionListener {
             
         }
         else if(e.getSource()==stitchButton2){
-            if(option1.isSelected()){
+            if(option1.isSelected()){       //when the main computer is used
                 //upload 6/10 selected pictures to cloud
                 //stitch 4 remaining pictures
                 //upload to cloud stitching result
@@ -230,7 +231,7 @@ public class CloudPanel extends JPanel implements ActionListener {
                     //if successful upload result, delete input images  
                     //if low match, discard second pic then download new pic 
             }
-            else{
+            else{           //a sub unit for stitching
                 //create folder for pictures
                 //download 3 pictures from cloud
                 //try stitching

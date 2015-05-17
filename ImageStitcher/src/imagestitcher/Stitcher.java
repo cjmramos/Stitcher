@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Parts of code created by 2011-2014, Peter Abeles
  */
 package imagestitcher;
 
@@ -62,7 +61,7 @@ public class Stitcher{
         System.out.println("Stitcher successfully initialized");
     }
     
-    static String initializeImages(String path1, String path2,int counter){
+    static String initializeImages(String path1, String path2,int counter){ //converts and initializes the input to BufferedImages
         BufferedImage imageA, imageB;
         
         c = counter;
@@ -70,7 +69,7 @@ public class Stitcher{
         imageA = UtilImageIO.loadImage(path1);
         imageB = UtilImageIO.loadImage(path2);
         newPath = stitch(imageA,imageB,ImageFloat32.class);
-        return newPath;
+        return newPath;             //returns the new path of the created image
     }
     
     public static <T extends ImageSingleBand> 
@@ -94,7 +93,7 @@ public class Stitcher{
 
         Homography2D_F64 H = computeTransform(inputA, inputB, detDesc, associate, modelMatcher);
 
-        if(filter==0){
+        if(filter==0){  //checks if feature match is appropriate
              newPath = renderStitching(imageA,imageB,H);
              return newPath;
         }
@@ -147,10 +146,10 @@ public class Stitcher{
 
         try {
             nPath = "/home/cjhay/Desktop/Image Stitcher/output_"+c+".jpg";
-            ImageIO.write(output, "jpg",new File(nPath));
+            ImageIO.write(output, "jpg",new File(nPath));   //outputs the stitched image inside the folder
             System.out.println("Success");
             JOptionPane.showMessageDialog(null, "Successfully Stitched Input Images");
-            return nPath;
+            return nPath;   //returns path of the new image
         } catch (IOException ex) {
             Logger.getLogger(Stitcher.class.getName()).log(Level.SEVERE, null, ex);
             return "Failed";
@@ -201,11 +200,11 @@ public class Stitcher{
       
         //Critical Part ------------------------------------------------------------------------------------------!!!!!!
         System.out.println("Matches:"+matches.size());
-        if(matches.size()<175){
+        if(matches.size()<175){     //Images can't be stitched due to low feature matches
            System.out.println("Low feature match");
            filter = 1;
         }
-        else{
+        else{       //if feature match is above 175
             filter = 0;
         }
         
