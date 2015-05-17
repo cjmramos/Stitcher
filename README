@@ -1,1 +1,5 @@
 Open Source Aerial Image Stitcher in a Computer Cluster
+
+SolitaryPanel.java:code for stitching images using a single computer
+CloudPanel.java: incomplete code for cloud based stitching
+Stitcher.java: holds functions needed for image processing
