@@ -107,7 +107,6 @@ class SolitaryPanel extends JPanel implements ActionListener{
         if(e.getSource() == selectButton){
                 //path = new ArrayList<>();
                 //filename = new ArrayList<>();
-                
                 chooser.addChoosableFileFilter(new FileNameExtensionFilter("Images","jpg","jpeg","png","gif","bmp"));
                 chooser.setMultiSelectionEnabled(true); //enables the multiple file selection
                 chooser.showOpenDialog(null);

@@ -145,7 +145,7 @@ public class Stitcher{
         
 
         try {
-            nPath = "/home/cjhay/Desktop/Image Stitcher/output_"+c+".jpg";
+            nPath = System.getProperty("user.home") + "/Desktop/Image Stitcher/output_"+c+".jpg";
             ImageIO.write(output, "jpg",new File(nPath));   //outputs the stitched image inside the folder
             System.out.println("Success");
             JOptionPane.showMessageDialog(null, "Successfully Stitched Input Images");
